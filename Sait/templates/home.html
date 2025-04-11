@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div style="background-color: #ecf0f1; padding: 2rem; border-radius: 15px; max-width: 900px; margin: 0 auto;">
+    <h2 style="color: #2c3e50; font-size: 2.5rem;">Добро пожаловать в нашу аптеку!</h2>
+    <p style="font-size: 1.2rem; color: #333;">
+        У нас вы найдете всё для здоровья — от проверенных медикаментов до витаминов и средств ухода.
+    </p>
+
+    <h3 style="margin-top: 2rem;">Популярные товары</h3>
+
+    <div id="slider" style="position: relative; overflow: hidden; width: 100%; max-width: 800px; margin: auto;">
+        <div id="slides" style="display: flex; transition: transform 0.5s ease;">
+            {% for product in products %}
+            <div style="min-width: 100%; box-sizing: border-box; padding: 20px;">
+                <div style="background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 1rem;">
+                    <img src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px;">
+                    <h4 style="margin-top: 1rem;">{{ product.name }}</h4>
+                    <p>{{ product.price }} руб.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Навигация -->
+        <button onclick="prevSlide()" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: #3498db; border: none; color: white; font-size: 1.5rem; padding: 5px 10px; border-radius: 50%; cursor: pointer;">‹</button>
+        <button onclick="nextSlide()" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: #3498db; border: none; color: white; font-size: 1.5rem; padding: 5px 10px; border-radius: 50%; cursor: pointer;">›</button>
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+
+    function showSlide(index) {
+        const offset = index * -100;
+        slides.style.transform = `translateX(${offset}%)`;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        showSlide(currentIndex);
+    }
+
+    // Автопрокрутка (по желанию)
+    setInterval(nextSlide, 5000);
+</script>
+{% endblock %}

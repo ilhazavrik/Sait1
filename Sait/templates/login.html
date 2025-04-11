@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+<h2>Авторизация</h2>
+<form method="POST" action="{{ url_for('login') }}">
+    {{ form.hidden_tag() }}
+    
+    <label for="username">Имя пользователя:</label>
+    {{ form.username(size=32) }}<br><br>
+    
+    <label for="password">Пароль:</label>
+    {{ form.password(size=32) }}<br><br>
+    
+    <button type="submit">Войти</button>
+</form>
+
+{% for message in get_flashed_messages(with_categories=true) %}
+    {% if message[0] == 'error' %}
+        <p style="color: red;">{{ message[1] }}</p>
+    {% elif message[0] == 'success' %}
+        <p style="color: green;">{{ message[1] }}</p>
+    {% endif %}
+{% endfor %}
+
+<a href="{{ url_for('register') }}">Нет аккаунта? Зарегистрируйтесь</a>
+{% endblock %}

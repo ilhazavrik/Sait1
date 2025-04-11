@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<h2>Регистрация</h2>
+<form method="POST" action="{{ url_for('register') }}">
+    {{ form.hidden_tag() }}
+
+    <label for="username">Имя пользователя:</label>
+    {{ form.username(size=32) }}<br><br>
+
+    <label for="password">Пароль:</label>
+    {{ form.password(size=32) }}<br><br>
+
+    <label for="confirm_password">Подтверждение пароля:</label>
+    {{ form.confirm_password(size=32) }}<br><br>
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+{% for message in get_flashed_messages(with_categories=true) %}
+    {% if message[0] == 'error' %}
+        <p style="color: red;">{{ message[1] }}</p>
+    {% elif message[0] == 'success' %}
+        <p style="color: green;">{{ message[1] }}</p>
+    {% endif %}
+{% endfor %}
+
+<a href="{{ url_for('login') }}">Уже есть аккаунт? Войдите</a>
+{% endblock %}

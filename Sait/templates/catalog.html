@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Каталог товаров{% endblock %}
+
+{% block content %}
+    <h2>Каталог товаров</h2>
+    <div class="product-list" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+
+        {% for product in products %}
+            <div class="product-item" style="border: 1px solid #ccc; border-radius: 10px; padding: 16px; width: 250px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                {% if product.image_url %}
+                    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image" style="width: 100%; height: auto; border-radius: 8px;">
+                {% else %}
+                    <img src="https://via.placeholder.com/250x150?text=Нет+изображения" alt="Нет изображения" class="product-image" style="width: 100%; height: auto; border-radius: 8px;">
+                {% endif %}
+                <h3 style="margin-top: 10px;">{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p><strong>Цена: {{ product.price }} ₽</strong></p>
+
+                {% if is_admin %}
+            <a href="{{ url_for('add_product', product_id=product.id) }}" class="button">Редактировать</a>
+                {% endif %}
+
+                 <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="POST">
+                    <button type="submit" class="button">Добавить в корзину</button>
+                </form>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

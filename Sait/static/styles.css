@@ -1,0 +1,112 @@
+/* Базовые стили для сайта */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Стили для шапки */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Контейнер для контента */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Стили для кнопок */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для ссылок */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.flash-messages .error {
+    color: red;
+    background-color: #f8d7da;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.flash-messages .success {
+    color: green;
+    background-color: #d4edda;
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+/* Стили для ссылки в шапке */
+.header-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.header-link:hover {
+    text-decoration: underline; /* Или оставьте none, если не нужно подчёркивание */
+}
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-item h3 {
+    margin-top: 10px;
+}
+
+.product-item p {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.product-item .button {
+    margin-top: 15px;
+}
+

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Редактировать товар' if product_id else 'Добавить товар' }}{% endblock %}
+
+{% block content %}
+    <h2>{{ 'Редактировать товар' if product_id else 'Добавить товар' }}</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=50) }}
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(size=100) }}
+        </p>
+        <p>
+            {{ form.price.label }}<br>
+            {{ form.price() }}
+        </p>
+        <p>
+            {{ form.image_url.label }}<br>
+            {{ form.image_url(size=100) }}
+        </p>
+        <p>{{ form.submit(class="button") }}</p>
+    </form>
+{% endblock %}
